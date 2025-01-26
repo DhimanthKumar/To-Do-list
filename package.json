@@ -1,0 +1,17 @@
+{
+  "name": "to-dolist",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "description": "",
+  "dependencies": {
+    "axion": "^0.1.0",
+    "axios": "^1.7.9"
+  }
+}
