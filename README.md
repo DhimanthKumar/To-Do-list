@@ -115,7 +115,7 @@ A full-stack To-Do list application built using **Django** (backend) and **React
 
 ```
 backend/
-├── api/                # API app containing models and views
+├── myapp/                # API app containing models and views
 ├── manage.py           # Django manage file
 └── requirements.txt    # Python dependencies
 ```
@@ -126,9 +126,10 @@ backend/
 frontend/
 ├── public/             # Public assets (index.html)
 ├── src/                # React source files
+|   ├── assets/           #images
 │   ├── components/     # React components (e.g., Task list, task form)
-│   ├── App.js          # Main React component
-│   └── index.js        # React entry point
+│   ├── App.jsx          # Main React component
+│   └── main.jsc        # React entry point
 └── package.json        # Node.js dependencies
 ```
 
