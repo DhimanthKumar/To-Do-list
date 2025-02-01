@@ -17,8 +17,8 @@ Installation
 Clone the repository:
 
 
-git clone <repository-url>
-cd <repository-name>
+git clone https://github.com/DhimanthKumar/To-Do-list.git
+cd To-Do-list
 Create and activate a virtual environment:
 
 python -m venv venv
