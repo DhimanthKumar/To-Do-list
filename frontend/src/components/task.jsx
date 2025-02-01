@@ -12,13 +12,14 @@ const Task = ({ id, job, status, deadline, created_at }) => {
     const [isediting, setIsediting] = useState(false);
     const [managejob, setJob] = useState(job);
     const [managestatus, setStatus] = useState(status === "P" ? "Pending" : status === "IP" ? "In Progress" : "Completed");
+    
     const formatDate = (date) => {
-        const year = date.getFullYear();
-        const month = String(date.getMonth() + 1).padStart(2, "0"); // Month is 0-based
-        const day = String(date.getDate()).padStart(2, "0");
-        const hours = String(date.getHours()).padStart(2, "0");
-        const minutes = String(date.getMinutes()).padStart(2, "0");
-        return `${year}-${month}-${day}T${hours}:${minutes}`;
+        const year = date.getUTCFullYear();
+        const month = String(date.getUTCMonth() + 1).padStart(2, "0");
+        const day = String(date.getUTCDate()).padStart(2, "0");
+        const hours = String(date.getUTCHours()).padStart(2, "0");
+        const minutes = String(date.getUTCMinutes()).padStart(2, "0");
+        return `${year}-${month}-${day}T${hours}:${minutes}`; 
     };
     const deadlinedate = new Date(deadline)    
     const [managedeadline, setDeadline] = useState(formatDate(deadlinedate));
@@ -38,13 +39,15 @@ const Task = ({ id, job, status, deadline, created_at }) => {
     const handleDeadline = (e) => {
         const selectedDeadline = e.target.value; // Get the selected deadline string
         setIsTouched(true); // Mark the field as touched
-        console.log(managedeadline);
+        
         const now = new Date(); // Current date/time
         const deadlineDate = new Date(selectedDeadline); // Convert the string to a Date object
-
+        
+        
         if (deadlineDate > now) {
             setValidDeadline(true); // If the selected deadline is in the future
-            setDeadline(selectedDeadline); // Update the deadline
+            setDeadline(deadlineDate.toISOString()) // Update the deadline
+            print(managedeadline);
         } else {
             setValidDeadline(false); // If the selected deadline is in the past
             setDeadline(""); // Reset the deadline if invalid
@@ -66,22 +69,20 @@ const Task = ({ id, job, status, deadline, created_at }) => {
     useEffect(() => {
         const now = new Date();
         const deadlineDate = new Date(deadline);
+    
+        if (isNaN(deadlineDate.getTime())) {
+            // If the deadline is invalid (NaN), do not proceed with the background color change
+            return;
+        }
+    
         const backgroundColor = now > deadlineDate ? "red" : color;
         setStyle({ ...style, backgroundColor: backgroundColor });
-    }, [isediting])
+    }, [isediting, deadline]);
     const dateString = deadline;
     const date = new Date(dateString);
-
+    const formattedDate = date.toUTCString();
     // Format to a readable string
-    const formattedDate = date.toLocaleString("en-US", {
-        year: "numeric",
-        month: "long", // "long" gives full month name, "short" gives abbreviated
-        day: "2-digit",
-        hour: "2-digit",
-        minute: "2-digit",
-        second: "2-digit",
-        timeZoneName: "short" // Includes time zone (e.g., UTC, GMT, etc.)
-    });
+    
     const handlecancel = ()=>{
         setIsediting(false);
         setJob(job);
@@ -89,6 +90,8 @@ const Task = ({ id, job, status, deadline, created_at }) => {
         setDeadline(deadlinedate);
     }
     const handleSubmit = (e)=>{
+        e.preventDefault();
+        console.log(id)
         const formdata = { 
             job : managejob,
             status : managestatus == "Pending" ? "P" : managestatus === "In Progress" ? "IP" : "C",
