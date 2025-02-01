@@ -101,7 +101,7 @@ A full-stack To-Do list application built using **Django** (backend) and **React
 
 ## Usage
 
-1. Open the app in your browser at `http://localhost:3000/`.
+1. Open the app in your browser at `http://localhost:5173/`.
 2. **Add a new task** by entering the title and description, then clicking "Add Task."
 3. **Edit a task** by clicking the edit icon on the task and modifying the title or description.
 4. **Mark a task as completed** by clicking the checkmark next to the task.
