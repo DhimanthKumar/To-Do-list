@@ -126,9 +126,9 @@ backend/
 frontend/
 ├── public/             # Public assets (index.html)
 ├── src/                # React source files
-|   ├── assets/           #images
+|   ├── assets/         #images
 │   ├── components/     # React components (e.g., Task list, task form)
-│   ├── App.jsx          # Main React component
+│   ├── App.jsx         # Main React component
 │   └── main.jsc        # React entry point
 └── package.json        # Node.js dependencies
 ```
