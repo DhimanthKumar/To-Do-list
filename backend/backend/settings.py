@@ -25,7 +25,10 @@ SECRET_KEY = 'django-insecure--z@dm9r0$@rcuf&fa&20&antb68tv%c(+!bn398_d90doy^i+h
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+'to-do-list-zima.onrender.com',
+    
+]
 
 
 # Application definition
